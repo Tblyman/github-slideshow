@@ -27,6 +27,22 @@ with one of these, in order of preference:
 
 ---
 
+## Captured door location
+
+| Field | Value |
+|---|---|
+| Latitude | `33.3081908` |
+| Longitude | `-111.7570556` |
+| Captured | 2026-10-01, standing at the EZ Spaces entrance |
+| Paste-ready | `33.3081908, -111.7570556` |
+
+You can paste these straight into Shortcut 2 instead of reading `ez_door.txt`. To do
+that, replace the first five actions with one **Location** action set to
+`33.3081908, -111.7570556`, then **Set Variable** `DoorLoc`. Use the same coordinates
+for the Arrive automation's pin.
+
+---
+
 ## Phone settings (do these first)
 
 1. **Settings → Privacy & Security → Location Services → Shortcuts** → *While Using the App*
