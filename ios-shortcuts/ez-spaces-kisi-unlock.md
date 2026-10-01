@@ -17,13 +17,15 @@ error is often 15–50 ft. So the shortcut works in two stages:
 Shortcuts **cannot tap UI elements inside other apps**. "Tap the EZ Spaces card" is done
 with one of these, in order of preference:
 
-- **A. Kisi's own Shortcuts action.** In Shortcuts, search actions for "Kisi". If an
-  *Unlock* action shows up with the EZ Spaces door as a parameter, use it. It does the
-  same thing as tapping the card.
-- **B. Kisi API**, using *Get Contents of URL* → `POST https://api.kisi.io/locks/{LOCK_ID}/unlock`.
-  This needs an API key and the lock ID from your Kisi admin.
-- **C. Fallback.** Open Kisi, then show a notification that says "Tap EZ Spaces". You make
-  one tap.
+Kisi does **not** offer an Unlock action in Shortcuts (checked on 2026-10-01). That
+leaves two options:
+
+- **Default: Open Kisi + notification.** The shortcut opens Kisi as you reach the door and
+  shows "At the door – tap EZ Spaces". You make one tap.
+- **Upgrade: Kisi API** (fully hands-free). Use *Get Contents of URL* →
+  `POST https://api.kisi.io/locks/{LOCK_ID}/unlock`. This needs an API key and the lock ID
+  from your Kisi admin. Your org's 5 ft / geofence rules may still apply to API unlocks,
+  so confirm with the admin.
 
 ---
 
@@ -83,12 +85,11 @@ Repeat 40 times                              (~2 min budget)
     Get Current Location
     Get Distance  from Current Location to DoorLoc   (Direct, in Feet)
     If Distance  is less than  25            (tune after testing — see below)
-        ── Option A ──  Kisi › Unlock  "EZ Spaces"
-        ── Option B ──  Get Contents of URL
+        ── Upgrade ───  Get Contents of URL
                           POST https://api.kisi.io/locks/LOCK_ID/unlock
                           Header  Authorization: KISI-LOGIN <API_KEY>
                           Header  Content-Type: application/json
-        ── Option C ──  Open App  Kisi
+        ── Default ───  Open App  Kisi
                         Show Notification  "At the door – tap EZ Spaces"
         Set Variable  Unlocked = Yes
         Stop and Output                        (exits the loop)
